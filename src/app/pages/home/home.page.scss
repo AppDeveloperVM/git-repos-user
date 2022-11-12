@@ -1,0 +1,66 @@
+#container {
+  text-align: center;
+
+  background-color: white;
+  height: 100vh;
+
+  strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.main {
+
+
+  .search_item {
+
+    .introduction {
+      height: 65px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      
+      .title{
+        
+        h2 {
+          margin: 0; 
+        }
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+
+      }
+
+      
+    }
+
+    padding: 20px 30px 40px 30px;
+    background-color: rgb(56, 145, 153) !important;
+
+    ion-input{
+      --background: white !important;
+        height: 20px;
+    }
+  }
+
+  .users-list {
+    margin-top:10px;
+ 
+  }
+
+}

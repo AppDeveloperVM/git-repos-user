@@ -1,0 +1,74 @@
+.container {
+    width: 200px;
+    height: 200px;
+}
+
+.result {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    .user_item {
+        height: 200px;
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+.user_item {
+    background-color: rgba($color: #68a5eb, $alpha: 1.0);
+    border-radius: 10px;
+    
+    .avatar {
+        padding: 10px;
+        border:1px solid blue;
+        
+        ion-thumbnail {
+            min-width: 5rem;    
+            min-height: 5rem;
+            text-align: center;
+            margin:0 auto;
+            max-width: 100px !important;
+            max-height: 100px !important;
+            --border-radius: 14px;
+        }
+    }
+
+    .descrip {
+        text-align: left;
+        
+
+       .info {
+        display: flex;
+        flex-direction: column;
+       }
+
+       .personal_info, .repos_info {
+        height: 100%;
+        padding-left: 10px;
+        padding-top: 5px ;
+
+            p { line-height: 1em; padding: 0; margin-bottom: 8px;}
+
+            border: 1px solid black;
+       }
+       .repos_info {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: end;
+            align-items: flex-start;
+            
+            border: 1px solid grey;
+       }
+    }
+    
+}
+
+#error {
+    background-color: rgba($color: #db703f, $alpha: 1.0);
+     div {
+        padding: 5px;
+     }
+}

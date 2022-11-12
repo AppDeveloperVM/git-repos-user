@@ -1,0 +1,36 @@
+<div class="result">
+
+    <div class="user_item" *ngIf="!error">
+       <div class="row h-100">
+        
+            <div class="col-4 col-xs-3 col-sm-3 col-md-4 col-lg-3 col-xl-3 ">
+                <div class="avatar h-100 w-100">
+                    <!--Left side -->
+                    <ion-thumbnail size="large">
+                        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                    </ion-thumbnail>
+                </div>
+            </div>
+            <div class="col-8 col-xs-9 col-sm-9 col-md-8 col-lg-9 col-xl-9 descrip d-flex">
+                <div class="info w-100">
+                    <div class="personal_info">
+                        <p>Nombre : aaaaaaaaaa , España</p>
+                        <p>email: aaaaaaaaaaaaaa</p>
+                    </div>
+                    <div class="repos_info">   
+                        <p>14 repos</p>
+                    </div>
+    
+                </div>
+            </div>
+       </div>
+    </div>
+
+    <div id="error" *ngIf="error">
+        <div> 
+            <h5 class="title">Error</h5>
+            <p>Ha habido un error al listar la informacion</p>  
+          </div>
+    </div>
+
+</div>
