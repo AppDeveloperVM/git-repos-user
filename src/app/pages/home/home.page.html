@@ -3,6 +3,7 @@
     <div class="main col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
 
       <div class="search_item">
+        <form [formGroup]="form">
           <div class="introduction">
             
               <div class="title">
@@ -11,12 +12,15 @@
               </div>
 
           </div>
-          <input type="text" class="form-control" placeholder="Git Username" aria-label="Recipient's username" aria-describedby="basic-addon2">    
-      </div>
+          <input type="text" formControlName="name" class="form-control" placeholder="Git Username" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+          <ion-button type="button" (click)="onSearch()">Search</ion-button>
+        </form>
+        </div>
 
-      <div class="row users-list" >
-        <div class="">
-          <app-user></app-user>
+      <div class="row users-list" *ngIf="users$ | async as userData">
+        {{userData.status}}
+        <div class="" *ngIf="userData.status != 404">
+          <app-user [user]="user"></app-user>
         </div>
       </div>
 
