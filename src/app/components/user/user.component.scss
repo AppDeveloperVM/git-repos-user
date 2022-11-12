@@ -22,7 +22,7 @@
     
     .avatar {
         padding: 10px;
-        border:1px solid blue;
+        border:1px solid rgba(0, 0, 255, 0.12);
         
         ion-thumbnail {
             min-width: 5rem;    
@@ -49,9 +49,15 @@
         padding-left: 10px;
         padding-top: 5px ;
 
-            p { line-height: 1em; padding: 0; margin-bottom: 8px;}
+            p { 
+                line-height: 1em; padding: 0; margin-bottom: 8px;
+                .attribute, .bold {
+                    color: black;
+                    font-weight: bold;
+                }
+            }
 
-            border: 1px solid black;
+            border: 1px solid rgba(0, 0, 0, 0.104);
        }
        .repos_info {
             display: flex;
@@ -60,7 +66,7 @@
             justify-content: end;
             align-items: flex-start;
             
-            border: 1px solid grey;
+            border: 1px solid rgba(128, 128, 128, 0.173);
        }
     }
     
