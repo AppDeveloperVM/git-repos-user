@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Repo } from 'src/app/models/repo.model';
 import { User } from 'src/app/models/user.model';
 
@@ -7,7 +7,7 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit,  OnChanges {
   error = false;
   @Input() profile = null;
   user : User;
@@ -20,6 +20,17 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.fetchProfileData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.profile) {
+        // Do your logic here
+        this.fetchProfileData()
+    }
+}
+
+  fetchProfileData(){
     console.log(this.profile);
     
     if(this.profile != null){
