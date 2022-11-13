@@ -2,7 +2,8 @@
   text-align: center;
 
   background-color: rgba(208, 251, 248, 0.807);
-  height: 100vh;
+  height: auto;
+  min-height: 100%;
 
   strong {
     font-size: 20px;
@@ -47,6 +48,10 @@
       }
 
       
+    }
+
+    .buttons {
+      text-align: right;
     }
 
     padding: 20px 30px 40px 30px;

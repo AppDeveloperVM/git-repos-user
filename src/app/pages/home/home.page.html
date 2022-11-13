@@ -12,17 +12,26 @@
               </div>
 
           </div>
-          <input type="text" formControlName="name" class="form-control" placeholder="Git Username" aria-label="Recipient's username" aria-describedby="basic-addon2">    
-          <ion-button type="button" (click)="onSearch()">Search</ion-button>
+          <input type="text" formControlName="name" class="form-control" (keydown)="onKeyDownEvent($event)" placeholder="Git Username" aria-label="Recipient's username" aria-describedby="basic-addon2">    
+          <div class="buttons">
+          <ion-button slot="end" type="button" (click)="onSearch()">Search</ion-button>
+          </div>
         </form>
         </div>
 
-      <div class="row users-list" *ngIf="users$ | async as userData">
-        {{userData.status}}
-        <div class="" *ngIf="userData.status != 404">
-          <app-user [user]="user"></app-user>
+      <div class="users-list" >
+
+        <div class="" *ngIf="user?.id">
+          <app-user [profile]="profile"></app-user>
         </div>
+
+        <div id="error" *ngIf="!user?.id && errorMessage != null">
+          <h5 class="title">Error</h5>
+          <p>Ha habido un error al listar la informacion, {{errorMessage}}.</p>  
+        </div>
+
       </div>
+
 
     </div>
   </div>
