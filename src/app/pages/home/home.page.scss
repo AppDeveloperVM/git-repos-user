@@ -65,6 +65,18 @@
 
   .users-list {
     margin-top:10px;
+
+    #error {
+      padding: 10px;
+      color: black;
+      background-color: rgba($color: #db703f, $alpha: 1.0);
+      p {
+        color: white;
+      }
+       div {
+          padding: 5px;
+       }
+    }
  
   }
 

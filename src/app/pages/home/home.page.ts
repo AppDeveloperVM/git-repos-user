@@ -22,7 +22,6 @@ export class HomePage implements OnInit{
   name : FormControl;
   isLoading = false;
 
-  users$ : Observable<User>;
   username : string;
 
   constructor(private githubService : GithubAPIService) {
@@ -30,12 +29,20 @@ export class HomePage implements OnInit{
       name: new FormControl('')
     });
 
+    this.init();
+
     this.profile = new Profile();
     this.profile.user = new User();
     this.profile.repos = new Array();
   }
 
   ngOnInit() {
+  }
+
+  init(){
+    this.profile = new Profile();
+    this.profile.user = new User();
+    this.profile.repos = new Array();
   }
 
   onKeyDownEvent(event: any){
@@ -51,75 +58,85 @@ export class HomePage implements OnInit{
   }
 
   onSearch(){
-    this.username = this.form.get('name').value;
-    
-    if(this.username == null) return;
+    console.log("ON SEARCH");
 
-    const Userpromise = new Promise((resolve,reject) => {
+    if(this.form.get('name').value != null){
 
-      this.githubService.getUser(this.username)
-      .pipe(
-        catchError( err => {
-          console.log(err);
-          
-          this.user = null;
-          this.error = err;
+      const username = this.form.get('name').value;
+      console.log(username);
 
-          this.handleError(err);
+      this.user = null;
+      this.repos = null;
+      
+      const Userpromise = new Promise((resolve,reject) => {
 
-          reject(err);
-          return EMPTY;
-        })
-      ).subscribe( user => {
-        this.user = user;
-        this.profile.user = user;
-        resolve(user);
-      });
-
-    });
-
-    const RepoPromise = new Promise((resolve,reject) => {
-
-    /*   if(this.user?.public_repos != 0){
-        reject(null);
-      } */
-
-      this.githubService.getUserRepos(this.username)
+        this.githubService.getUser(username)
         .pipe(
           catchError( err => {
             console.log(err);
             
-            this.repos = null;
+            this.user = null;
             this.error = err;
-            this.handleError(err);
+
+            this.handleError(err.status);
+
+            reject(err);
             return EMPTY;
           })
-        ).subscribe( repos => {
-          console.log(repos);
-
-          repos.forEach(repo =>{
-            console.log(repo);
-            this.profile.repos.push(repo)
-          })
-
-          resolve(repos);
+        ).subscribe( user => {
+          this.user = user;
+          this.profile.user = user;
+          resolve(user);
         });
 
-    })
-    
-    Userpromise.then((user)=> {
-      
-      console.log('User found succesfully:',user);
-      RepoPromise.then((repo)=> {
-        console.log('Repos found succesfully');
+      });
+
+      const RepoPromise = new Promise((resolve,reject) => {
+
+      /*   if(this.user?.public_repos != 0){
+          reject(null);
+        } */
+
+        this.githubService.getUserRepos(username)
+          .pipe(
+            catchError( err => {
+              console.log(err);
+              
+              this.repos = null;
+              this.error = err;
+              this.handleError(err.status);
+              reject(err);
+              return EMPTY;
+            })
+          ).subscribe( repos => {
+            repos.forEach(repo =>{
+              this.profile.repos.push(repo)
+            })
+            resolve(repos);
+          });
+
       })
-      .catch((err)=> {
-        console.log("Error fetching repos: ", err);
+
+      const finalpromise = new Promise((resolve,reject)=> {
+        Userpromise.then((user)=> {
+        
+          console.log('User found succesfully:',user);
+          RepoPromise.then((repo)=> {
+            console.log('Repos found succesfully',repo);
+            resolve(true);
+          })
+          .catch((err)=> {
+            console.log("Error fetching repos: ", err);
+            reject(false)
+          })
+        })
+        .catch((err)=> {
+          console.log("User not found: ", err);
+          reject(false)
+        })
       })
-    })
-    .catch((err)=> {
-      console.log("User not found: ", err);
-    })
+
+    }
  
 
   }
