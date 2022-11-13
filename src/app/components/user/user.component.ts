@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Repo } from 'src/app/models/repo.model';
-import { User } from 'src/app/models/user.model';
+import { Repo } from '../../submodules/github-provider/models/repo.model';
+import { User } from '../../submodules/github-provider/models/user.model';
 
 @Component({
   selector: 'app-user',

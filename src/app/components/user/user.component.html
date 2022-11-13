@@ -32,8 +32,8 @@
                     <div class="row">
                     <div class="col">
                         <h3 *ngIf="repo?.name">{{repo.name}} <a href="{{repo.html_url}}" alt="go to Repo" target="_blank"><ion-icon name="arrow-forward-circle-outline"></ion-icon></a></h3>
-                        <p *ngIf="repo?.created_at">Fecha Creación : <span class="attribute">{{repo.created_at}}</span></p>
-                        <p *ngIf="repo?.updated_at">Fecha última actualización : <span class="attribute">{{repo.updated_at}}</span></p>
+                        <p *ngIf="repo?.created_at">Fecha Creación : <span class="attribute">{{repo.created_at | date: 'dd/MM/yyyy'}}</span></p>
+                        <p *ngIf="repo?.updated_at">Fecha última actualización : <span class="attribute">{{repo.updated_at | date: 'dd/MM/yyyy'}}</span></p>
                     </div>
                     </div>
                 </ion-item>
