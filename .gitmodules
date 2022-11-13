@@ -1,0 +1,3 @@
+[submodule "src/app/submodules/github-provider"]
+	path = src/app/submodules/github-provider
+	url = https://github.com/AppDeveloperVM/github.provider
