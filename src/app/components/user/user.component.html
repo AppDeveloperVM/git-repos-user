@@ -1,36 +1,49 @@
 <div class="result">
 
     <div class="user_item" *ngIf="!error">
-       <div class="row h-100">
+    
+       <div class="row">
         
-            <div class="col-4 col-xs-3 col-sm-3 col-md-4 col-lg-3 col-xl-3 ">
-                <div class="avatar h-100 w-100">
+            <div class="col-4 col-xs-3 col-sm-3 col-md-3 col-lg-2 col-xl-2 left-col">
+                <div class="avatar">
                     <!--Left side -->
-                    <ion-thumbnail size="large">
-                        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                    <ion-thumbnail class="w-100 h-100">
+                        <img alt="Silhouette of mountains" src="{{user?.avatar_url}}" />
                     </ion-thumbnail>
                 </div>
             </div>
-            <div class="col-8 col-xs-9 col-sm-9 col-md-8 col-lg-9 col-xl-9 descrip d-flex">
+            <div class="col-8 col-xs-9 col-sm-9 col-md-9 col-lg-10 col-xl-10 descrip d-flex">
                 <div class="info w-100">
                     <div class="personal_info">
-                        <p><span class="attribute">Nombre :</span> {{user?.location}} , España</p>
-                        <p><span class="attribute">Email :</span> aaaaaaaaaaaaaa</p>
+                        <p *ngIf="user?.name">Nombre : <span class="attribute">{{user?.name}}</span></p>
+                        <p *ngIf="user?.location">Localización: <span class="attribute" >{{user?.location}}</span></p>
+                        <p *ngIf="user?.email">Email : <span class="attribute">{{user?.email}}</span></p>
+                        <p *ngIf="user?.blog"><span class="attribute"> <a href="{{user?.blog}}" target="_blank">Blog</a></span></p>
                     </div>
                     <div class="repos_info">   
-                        <p><span class="bold">14</span> repos</p>
+                        <p *ngIf="user?.public_repos"><span class="attribute">{{ user?.public_repos }}</span> repos</p>
                     </div>
     
                 </div>
             </div>
+
+            <div *ngIf="repos != null" class="repos_list">
+                <ion-item *ngFor="let repo of repos" class="repo">
+                    <div class="row">
+                    <div class="col">
+                        <h3 *ngIf="repo?.name">{{repo.name}} <a href="{{repo.html_url}}" alt="go to Repo" target="_blank"><ion-icon name="arrow-forward-circle-outline"></ion-icon></a></h3>
+                        <p *ngIf="repo?.created_at">Fecha Creación : <span class="attribute">{{repo.created_at}}</span></p>
+                        <p *ngIf="repo?.updated_at">Fecha última actualización : <span class="attribute">{{repo.updated_at}}</span></p>
+                    </div>
+                    </div>
+                </ion-item>
+
+            </div>
+            
        </div>
+    
     </div>
 
-    <div id="error" *ngIf="error">
-        <div> 
-            <h5 class="title">Error</h5>
-            <p>Ha habido un error al listar la informacion</p>  
-          </div>
-    </div>
+    
 
 </div>

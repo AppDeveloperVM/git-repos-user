@@ -10,7 +10,6 @@
     align-items: stretch;
     position: relative;
     .user_item {
-        height: 200px;
         padding: 10px;
         margin: 10px;
     }
@@ -19,19 +18,16 @@
 .user_item {
     background-color: rgba($color: #68a5eb, $alpha: 1.0);
     border-radius: 10px;
-    
-    .avatar {
-        padding: 10px;
-        border:1px solid rgba(0, 0, 255, 0.12);
-        
-        ion-thumbnail {
-            min-width: 5rem;    
-            min-height: 5rem;
-            text-align: center;
-            margin:0 auto;
-            max-width: 100px !important;
-            max-height: 100px !important;
-            --border-radius: 14px;
+
+   
+
+    .left-col {
+
+        .avatar {     
+            height: 100%;
+            img {
+                border-radius: 10px !important;
+            }
         }
     }
 
@@ -49,25 +45,61 @@
         padding-left: 10px;
         padding-top: 5px ;
 
-            p { 
-                line-height: 1em; padding: 0; margin-bottom: 8px;
-                .attribute, .bold {
-                    color: black;
-                    font-weight: bold;
-                }
-            }
+            
 
-            border: 1px solid rgba(0, 0, 0, 0.104);
        }
        .repos_info {
             display: flex;
             height: 100%;
             flex-direction: column;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: flex-start;
             
-            border: 1px solid rgba(128, 128, 128, 0.173);
        }
+    }
+
+    p { 
+        line-height: 1em; padding: 0; margin-bottom: 8px;
+        color: black;
+        font-weight: bold;
+        .attribute, .bold {
+            font-weight: normal;
+        }
+ 
+    }
+
+    a {
+        color:rgba($color: #1a6dcc, $alpha: 1.0);
+        font-weight:bold;
+    }
+
+    h3 {
+
+    }
+
+    .repos_list {
+        text-align: left;
+        margin-top: 10px;
+
+        .row {
+            height: 140px;
+        }
+        
+        ion-item.repo {
+            --padding: 10px 0px;
+            border:2px solid rgba($color: #6287b1, $alpha: 1.0);
+            border-radius: 10px;
+            --background: #b3c9e2;
+
+            a {
+                color: black;
+                font-weight: bold;
+            }
+
+            a:hover {
+                color: blue;
+              }
+        }
     }
     
 }
