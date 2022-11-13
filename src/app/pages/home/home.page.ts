@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable, Subscription } from 'rxjs';
-import { User } from 'src/app/models/user.model';
-import { GithubAPIService } from 'src/app/services/github-api.service';
-import { Profile } from 'src/app/models/profile.model';
-import { Repo } from 'src/app/models/repo.model';
+
+import { Profile } from '../../submodules/github-provider/models/profile.model';
+import { Repo } from '../../submodules/github-provider/models/repo.model';
+import { User } from '../../submodules/github-provider/models/user.model';
+import { GithubAPIService } from '../../submodules/github-provider/services/github-api.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
