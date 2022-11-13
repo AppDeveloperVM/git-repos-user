@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { GithubAPIService } from 'src/app/services/github-api.service';
 import { Profile } from 'src/app/models/profile.model';
 import { Repo } from 'src/app/models/repo.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomePage implements OnInit{
   isLoading = false;
 
   username : string;
+  authkey  = environment.gitKey;
 
   constructor(private githubService : GithubAPIService) {
     this.form = new FormGroup({
@@ -70,7 +72,7 @@ export class HomePage implements OnInit{
       
       const Userpromise = new Promise((resolve,reject) => {
 
-        this.githubService.getUser(username)
+        this.githubService.getUser(username,this.authkey)
         .pipe(
           catchError( err => {
             console.log(err);
@@ -97,7 +99,7 @@ export class HomePage implements OnInit{
           reject(null);
         } */
 
-        this.githubService.getUserRepos(username)
+        this.githubService.getUserRepos(username,this.authkey)
           .pipe(
             catchError( err => {
               console.log(err);
