@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 
@@ -20,16 +20,16 @@ export class HomePage implements OnInit{
   profile : Profile = null;
   error: boolean = false;
   errorMessage = null;
-  form : FormGroup;
-  name : FormControl;
+  form : UntypedFormGroup;
+  name : UntypedFormControl;
   isLoading = false;
 
   username : string;
   authkey  = environment.gitKey;
 
   constructor(private githubService : GithubAPIService) {
-    this.form = new FormGroup({
-      name: new FormControl('')
+    this.form = new UntypedFormGroup({
+      name: new UntypedFormControl('')
     });
 
     this.init();
